@@ -1,23 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { useEffect, useLayoutEffect, useState } from 'react';
+import './App.css';
+import Swal from 'sweetalert2';
+import welcome from './assets/welcome.mp3'
+function App()
+{
+  const audio = new Audio(welcome);
+  const audio2 = new Audio("https://badasstechie.github.io/Clips/Siren.mp3");
+  const [state, setStates] = useState(false)
+  useEffect(() =>
+  {
+    Swal.fire({
+      title: 'Welcome to AIM',
+      text: 'Greetings To you',
+      icon: 'Success',
+      // showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Greetings!!!'
+    }).then(async (result) =>
+    {
+      if (result.isConfirmed)
+      {
+        await audio.play()
+        console.log(audio)
+        // setStates(true)
+        // do something here when user confirms action
+      }
+    });
+
+    const myBtn = document.getElementById('greetBttn')
+    myBtn.click()
+
+  }, [])
+
+
+
+
+
+  function handleButtonClick()
+  {
+    console.log("Im clicked");
+
+    audio.play();
+    // setIsPlaying(true);
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+      </div>
     </div>
   );
 }
